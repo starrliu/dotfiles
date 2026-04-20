@@ -55,8 +55,6 @@ bindkey "^[[B" down-line-or-beginning-search
 bindkey "^[[1;5C" forward-word      # Ctrl+Right
 bindkey "^[[1;5D" backward-word     # Ctrl+Left
 # 兼容不同终端（如 tmux, screen, 某些 xterm）
-bindkey "^[OC" forward-word         # 备用
-bindkey "^[OD" backward-word        # 备用
 bindkey "^[^[[C" forward-word       # Esc+Right (某些终端)
 bindkey "^[^[[D" backward-word      # Esc+Left (某些终端)
 
