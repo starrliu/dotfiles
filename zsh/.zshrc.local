@@ -1,0 +1,3 @@
+# ~/.zshrc.local
+# 主机特定配置，不纳入版本控制
+# 例如：conda init, nvm, fzf, 特定工具路径等
