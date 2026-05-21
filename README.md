@@ -70,7 +70,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/plugins/zs
 - `prefix + Ctrl-s` — 手动保存
 - `prefix + Ctrl-r` — 手动恢复
 
-快照位置：`~/.tmux/resurrect/`（`last` 软链指向最新快照）。
+快照位置：`${XDG_DATA_HOME:-~/.local/share}/tmux/resurrect/`（`last` 软链指向最新快照）。
 
 会被恢复的进程白名单：`vim nvim tail less man top htop`。其它进程（如 ssh、REPL）恢复后 pane 是干净的 shell。
 
