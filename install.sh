@@ -83,7 +83,20 @@ install_zsh_plugins() {
 }
 
 # ═══════════════════════════════════════════
-# 4. 使用 Stow 链接 dotfiles
+# 4. 安装 TPM (Tmux Plugin Manager)
+# ═══════════════════════════════════════════
+install_tpm() {
+    info "Installing TPM..."
+    local TPM_DIR="$HOME/.tmux/plugins/tpm"
+    if [[ ! -d "$TPM_DIR" ]]; then
+        git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+    else
+        info "TPM already installed"
+    fi
+}
+
+# ═══════════════════════════════════════════
+# 5. 使用 Stow 链接 dotfiles
 # ═══════════════════════════════════════════
 link_dotfiles() {
     info "Linking dotfiles with stow..."
@@ -95,7 +108,7 @@ link_dotfiles() {
 }
 
 # ═══════════════════════════════════════════
-# 5. 设置默认 Shell
+# 6. 设置默认 Shell
 # ═══════════════════════════════════════════
 set_default_shell() {
     if [[ "$SHELL" != *"zsh"* ]]; then
