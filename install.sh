@@ -95,6 +95,13 @@ install_tpm() {
     fi
 }
 
+# 安装 TPM 列出的插件（resurrect + continuum）
+install_tmux_plugins() {
+    info "Installing tmux plugins via TPM..."
+    "$HOME/.tmux/plugins/tpm/bin/install_plugins" || \
+        warn "Plugin install failed; run 'prefix + I' inside tmux to retry"
+}
+
 # ═══════════════════════════════════════════
 # 5. 使用 Stow 链接 dotfiles
 # ═══════════════════════════════════════════
