@@ -138,7 +138,9 @@ main() {
     install_packages
     install_conda
     install_zsh_plugins
+    install_tpm
     link_dotfiles
+    install_tmux_plugins
     set_default_shell
 
     echo ""
@@ -153,6 +155,9 @@ main() {
     echo "     ~/miniconda3/bin/conda init zsh"
     echo ""
     echo "  3. Restart your shell or run: exec zsh"
+    echo ""
+    echo "  4. If a tmux server is already running, restart it for plugins to load:"
+    echo "     tmux kill-server"
 }
 
 main "$@"
