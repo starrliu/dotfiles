@@ -5,7 +5,7 @@
 ## 包含内容
 
 - **zsh** - Zsh 配置（补全、键位绑定、alias、prompt 等）
-- **tmux** - Tmux 配置（Ctrl+a prefix、vim 风格移动、鼠标支持）
+- **tmux** - Tmux 配置（Ctrl+a prefix、vim 风格移动、鼠标支持、resurrect/continuum 持久化）
 - **git** - Git 配置
 
 ## 安装
@@ -57,6 +57,22 @@ mkdir -p ~/.zsh/plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/plugins/zsh-syntax-highlighting
 ```
+
+### Tmux 持久化
+
+`install.sh` 会自动安装 TPM 与以下插件：
+
+- [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) — 保存/恢复 session、window、pane 布局与 scrollback
+- [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) — 每 15 分钟自动保存；tmux server 启动时自动恢复
+
+快捷键：
+
+- `prefix + Ctrl-s` — 手动保存
+- `prefix + Ctrl-r` — 手动恢复
+
+快照位置：`~/.tmux/resurrect/`（`last` 软链指向最新快照）。
+
+会被恢复的进程白名单：`vim nvim tail less man top htop`。其它进程（如 ssh、REPL）恢复后 pane 是干净的 shell。
 
 ### 本地配置
 
