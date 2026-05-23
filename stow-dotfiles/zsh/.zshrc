@@ -68,13 +68,19 @@ bindkey "^[[4~" end-of-line         # 兼容
 bindkey "^[[3~" delete-char
 
 # ── 7. Alias ────────────────────────────────
-alias ls='ls --color=auto'
+if ls --color=auto >/dev/null 2>&1; then
+    alias ls='ls --color=auto'
+else
+    alias ls='ls -G'
+fi
 alias ll='ls -lhF'
 alias la='ls -lahF'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias grep='grep --color=auto'
+if grep --color=auto --version >/dev/null 2>&1; then
+    alias grep='grep --color=auto'
+fi
 alias df='df -h'
 alias du='du -h'
 alias ..='cd ..'
