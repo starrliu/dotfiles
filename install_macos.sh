@@ -113,6 +113,14 @@ link_dotfiles() {
 
 install_tmux_plugins() {
     info "Installing tmux plugins via TPM..."
+    local tmux_plugin_dir="$HOME/.tmux/plugins"
+
+    tmux start-server \; \
+        set-environment -g TMUX_PLUGIN_MANAGER_PATH "$tmux_plugin_dir/" || {
+        warn "Could not initialize tmux plugin path; run 'prefix + I' inside tmux to retry."
+        return
+    }
+
     "$HOME/.tmux/plugins/tpm/bin/install_plugins" || \
         warn "Plugin install failed; run 'prefix + I' inside tmux to retry."
 }
