@@ -7,6 +7,7 @@
 - **zsh** - Zsh 配置（补全、键位绑定、alias、prompt 等）
 - **tmux** - Tmux 配置（Ctrl+a prefix、vim 风格移动、鼠标支持、resurrect/continuum 持久化）
 - **git** - Git 配置
+- **claude** - Claude Code 配置（settings.json、自定义 skills）
 
 可由 Stow 安装的配置位于 `stow-dotfiles/`：
 
@@ -15,6 +16,8 @@ stow-dotfiles/
   git/.gitconfig
   tmux/.tmux.conf
   zsh/.zshrc
+  claude/.claude/settings.json
+  claude/.claude/skills/
 ```
 
 ## 安装
@@ -54,6 +57,8 @@ Miniconda 默认不安装。如需安装：
 ~/.zshrc
 ~/.tmux.conf
 ~/.gitconfig
+~/.claude/settings.json
+~/.claude/skills/
 ```
 
 请先手动比较并合并：
@@ -80,13 +85,14 @@ cd ~/dotfiles/stow-dotfiles
 stow -t "$HOME" zsh    # 只安装 zsh 配置
 stow -t "$HOME" tmux   # 只安装 tmux 配置
 stow -t "$HOME" git    # 只安装 git 配置
+stow -t "$HOME" claude # 只安装 Claude Code 配置
 ```
 
 ## 卸载
 
 ```bash
 cd ~/dotfiles/stow-dotfiles
-stow -D -t "$HOME" zsh tmux git
+stow -D -t "$HOME" zsh tmux git claude
 ```
 
 ## 安装后配置
@@ -134,3 +140,24 @@ git config --file stow-dotfiles/git/.gitconfig user.email "your@email.com"
 ```bash
 examples/.zshrc.local
 ```
+
+### Claude Code
+
+`stow-dotfiles/claude/` 包含 Claude Code 的基础配置：
+
+- `settings.json` - 通用设置（插件、模式、环境变量默认值）
+- `skills/` - 自定义 skills（amlt-cli、amlt-e2e）
+
+机器特定配置（如 `ANTHROPIC_MODEL`、`ANTHROPIC_BASE_URL`）通过 `~/.claude/settings.local.json` 覆盖，不纳入 Stow。
+
+**注意**：若已运行过 Claude Code，`~/.claude/settings.json` 和 `~/.claude/skills/` 可能已存在。Stow 前需先备份：
+
+```bash
+mkdir -p ~/.claude-backup
+mv ~/.claude/settings.json ~/.claude-backup/ 2>/dev/null || true
+mv ~/.claude/skills ~/.claude-backup/ 2>/dev/null || true
+```
+
+#### 飞书通知
+
+将 [`setup_claude_feishu_notify.md`](setup_claude_feishu_notify.md) 的内容贴给 Claude Code，它会自动完成通知插件的安装和飞书 webhook 配置。
