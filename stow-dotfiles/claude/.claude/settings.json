@@ -1,0 +1,17 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:4141",
+    "ANTHROPIC_AUTH_TOKEN": "Powered by Agent Maestro",
+    "ANTHROPIC_MODEL": "claude-opus-4.6[1m]",
+    "ANTHROPIC_SMALL_FAST_MODEL": "claude-haiku-4.5",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_MAX_CONTENT_TOKENS": "1000000",
+    "DISABLE_AUTO_COMPACT": "0"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "teammateMode": "tmux",
+  "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
+  "CLAUDE_CODE_MAX_CONTEXT_TOKENS": "1000000",
+  "DISABLE_AUTO_COMPACT": "1"
+}
