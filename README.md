@@ -190,3 +190,16 @@ test -e ~/.agents/skills/amlt-e2e/my-env.md || \
 仅在 `my-env.md` 不存在时复制模板，避免覆盖已有记录。
 旧版已跟踪的 Claude `my-env.md` 现已移出版本管理；升级前请将自己的文件备份到仓库外，
 升级完成后放回原位置。此变更不会移除 Git 历史中的旧版本。
+
+### Codex CLI（ghc-api 代理）
+
+`bash install_codex.sh` 安装 Codex CLI，并通过交互式 GitHub 登录配置 ghc-api
+（将 GitHub Copilot 请求转为本地 API 的代理）。运行前需安装 Node.js 22 或更高版本、
+`npm` 和 `pipx`，并拥有 GitHub Copilot 订阅。
+
+脚本保留已有的 `${CODEX_HOME:-$HOME/.codex}/config.toml`；仅在文件不存在时创建配置，
+使用 `ghc-api` provider、`http://localhost:8313/v1` 和 `gpt-5.5`。
+代理实际提供的模型取决于账号与服务，请按需调整。脚本不默认关闭审批或沙箱。
+
+安装后先运行 `pipx run ghc-api -p 8313`，再在另一个终端运行 `codex`。
+若保留了旧配置，请自行核对模型、provider 和代理地址。
