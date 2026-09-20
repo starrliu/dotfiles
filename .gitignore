@@ -1,0 +1,5 @@
+# Machine-specific assistant settings and AMLT environment details.
+.claude/settings.local.json
+stow-dotfiles/claude/.claude/settings.local.json
+stow-dotfiles/claude/.claude/skills/amlt-e2e/my-env.md
+stow-dotfiles/agents/.agents/skills/amlt-e2e/my-env.md

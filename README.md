@@ -171,3 +171,22 @@ mv ~/.claude/skills ~/.claude-backup/ 2>/dev/null || true
 #### 飞书通知
 
 将 [`setup_claude_feishu_notify.md`](setup_claude_feishu_notify.md) 的内容贴给 Claude Code，它会自动完成通知插件的安装和飞书 webhook 配置。
+
+
+### 共享 AMLT 技能
+
+`agents` 包包含 `amlt-cli`（命令参考）、`amlt-e2e`（任务提交、监控与恢复流程）
+和 Kubernetes 技能。安装后可从 `~/.agents/skills/` 发现它们。
+Claude 的 AMLT 技能仍保留在 `~/.claude/skills/`；两处是独立副本，修改通用内容时应同步更新。
+
+机器专属的 AMLT 环境记录不纳入版本管理。需要时，在安装对应包后运行：
+
+```bash
+test -e ~/.agents/skills/amlt-e2e/my-env.md || \
+  cp ~/.agents/skills/amlt-e2e/my-env.example.md ~/.agents/skills/amlt-e2e/my-env.md
+# Claude 用户可在 ~/.claude/skills/amlt-e2e/ 下做相同操作。
+```
+
+仅在 `my-env.md` 不存在时复制模板，避免覆盖已有记录。
+旧版已跟踪的 Claude `my-env.md` 现已移出版本管理；升级前请将自己的文件备份到仓库外，
+升级完成后放回原位置。此变更不会移除 Git 历史中的旧版本。
