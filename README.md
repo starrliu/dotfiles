@@ -8,6 +8,7 @@
 - **tmux** - Tmux 配置（Ctrl+a prefix、vim 风格移动、鼠标支持、resurrect/continuum 持久化）
 - **git** - Git 配置
 - **claude** - Claude Code 配置（settings.json、自定义 skills）
+- **agents** - Codex 可发现的共享技能，安装到 `~/.agents/skills/`
 
 可由 Stow 安装的配置位于 `stow-dotfiles/`：
 
@@ -18,6 +19,7 @@ stow-dotfiles/
   zsh/.zshrc
   claude/.claude/settings.json
   claude/.claude/skills/
+  agents/.agents/skills/
 ```
 
 ## 安装
@@ -33,7 +35,7 @@ cd ~/dotfiles
 ./install_linux.sh
 ```
 
-安装脚本会安装基础工具、zsh 插件、TPM，并用 Stow 链接 `git`、`tmux`、`zsh` 配置。
+安装脚本会安装基础工具、zsh 插件、TPM，并用 Stow 链接 `git`、`tmux`、`zsh` 配置及 `agents` 共享技能。
 
 Miniconda 默认不安装。如需安装：
 
@@ -59,6 +61,7 @@ Miniconda 默认不安装。如需安装：
 ~/.gitconfig
 ~/.claude/settings.json
 ~/.claude/skills/
+~/.agents/skills/
 ```
 
 请先手动比较并合并：
@@ -86,13 +89,20 @@ stow -t "$HOME" zsh    # 只安装 zsh 配置
 stow -t "$HOME" tmux   # 只安装 tmux 配置
 stow -t "$HOME" git    # 只安装 git 配置
 stow -t "$HOME" claude # 只安装 Claude Code 配置
+stow -t "$HOME" agents # 只安装共享技能（~/.agents/skills/）
 ```
+
+`agents` 包使用 `.agents`（复数）目录，供 Codex 自动发现技能。
+旧版的 `agent/.agent` 已改名为 `agents/.agents`。已有机器升级时，
+先移除指向旧目录的 `~/.agent` 符号链接，以及
+`~/.agents/skills/` 内指向 `~/.agent/skills/` 的旧符号链接，再运行上述
+`stow -t "$HOME" agents`。只移除符号链接，保留实际目录和自行添加的技能。
 
 ## 卸载
 
 ```bash
 cd ~/dotfiles/stow-dotfiles
-stow -D -t "$HOME" zsh tmux git claude
+stow -D -t "$HOME" zsh tmux git claude agents
 ```
 
 ## 安装后配置

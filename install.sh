@@ -88,14 +88,7 @@ install_zsh_plugins() {
 link_dotfiles() {
     info "Linking dotfiles with stow..."
 
-    cd "$DOTFILES_DIR"
-    stow -v zsh
-    stow -v tmux
-    stow -v git
-
-    # Packages under stow-dotfiles/ mirror $HOME and are stowed from that dir.
-    info "Linking stow-dotfiles packages (agent skills)..."
-    stow -v --dir stow-dotfiles --target "$HOME" agent
+    stow -v --dir "$DOTFILES_DIR/stow-dotfiles" --target "$HOME" git tmux zsh agents
 }
 
 # ═══════════════════════════════════════════

@@ -94,7 +94,7 @@ install_tpm() {
 link_dotfiles() {
     info "Linking dotfiles with stow..."
     cd "$STOW_DIR"
-    stow -t "$HOME" -v git tmux zsh
+    stow -t "$HOME" -v git tmux zsh agents
 }
 
 install_tmux_plugins() {
