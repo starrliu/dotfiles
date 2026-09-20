@@ -2,16 +2,65 @@
   "env": {
     "ANTHROPIC_BASE_URL": "http://localhost:4141",
     "ANTHROPIC_AUTH_TOKEN": "Powered by Agent Maestro",
-    "ANTHROPIC_MODEL": "claude-opus-4.6[1m]",
+    "ANTHROPIC_MODEL": "claude-opus-4.8[1m]",
     "ANTHROPIC_SMALL_FAST_MODEL": "claude-haiku-4.5",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_CODE_MAX_CONTENT_TOKENS": "1000000",
-    "DISABLE_AUTO_COMPACT": "0"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "skipDangerousModePermissionPrompt": true,
-  "teammateMode": "tmux",
-  "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
-  "CLAUDE_CODE_MAX_CONTEXT_TOKENS": "1000000",
-  "DISABLE_AUTO_COMPACT": "1"
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \"$HOME/.claude/hooks/notify.sh\" ]; then \"$HOME/.claude/hooks/notify.sh\"; fi"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -x \"$HOME/.claude/hooks/notify.sh\" ]; then \"$HOME/.claude/hooks/notify.sh\"; fi"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "academic-research-skills@academic-research-skills": true,
+    "kicad-happy@kicad-happy": true,
+    "claude-notifications-go@claude-notifications-go": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "academic-research-skills": {
+      "source": {
+        "source": "github",
+        "repo": "Imbad0202/academic-research-skills"
+      }
+    },
+    "kicad-happy": {
+      "source": {
+        "source": "github",
+        "repo": "aklofas/kicad-happy"
+      }
+    },
+    "claude-notifications-go": {
+      "source": {
+        "source": "github",
+        "repo": "starrliu/claude-notifications-go"
+      }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
 }

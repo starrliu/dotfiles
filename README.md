@@ -168,6 +168,8 @@ mv ~/.claude/settings.json ~/.claude-backup/ 2>/dev/null || true
 mv ~/.claude/skills ~/.claude-backup/ 2>/dev/null || true
 ```
 
+通知 hooks 仅在 `~/.claude/hooks/notify.sh` 存在且可执行时调用它；该脚本和通知凭据需在本机单独配置。
+
 #### 飞书通知
 
 将 [`setup_claude_feishu_notify.md`](setup_claude_feishu_notify.md) 的内容贴给 Claude Code，它会自动完成通知插件的安装和飞书 webhook 配置。
