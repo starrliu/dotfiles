@@ -196,8 +196,13 @@ test -e ~/.agents/skills/amlt-e2e/my-env.md || \
 ### Codex CLI（ghc-api 代理）
 
 `bash install_codex.sh` 安装 Codex CLI，并通过交互式 GitHub 登录配置 ghc-api
-（将 GitHub Copilot 请求转为本地 API 的代理）。运行前需安装 Node.js 22 或更高版本、
-`npm` 和 `pipx`，并拥有 GitHub Copilot 订阅。
+（将 GitHub Copilot 请求转为本地 API 的代理），需要 GitHub Copilot 订阅和网络连接。
+脚本会通过 apt、dnf、pacman 或 Homebrew 安装缺失的 `curl`、`pipx`；Linux 安装系统依赖时可能需要 sudo，
+macOS 需先安装 Homebrew。若 Node.js/npm 缺失或 Node.js 低于 22，脚本先加载已有的 nvm
+（用户目录中的 Node.js 版本管理器），必要时安装 nvm 和 Node.js 22。
+安装 Node.js 22 时也会将它设为 nvm 的默认版本，供新终端使用。
+Codex 安装到 `~/.local/bin`，无需 sudo；脚本通过 `pipx ensurepath` 配置命令搜索路径。
+完成后重新打开终端，使新增的 PATH 和 nvm 初始化配置生效。
 
 脚本保留已有的 `${CODEX_HOME:-$HOME/.codex}/config.toml`；仅在文件不存在时创建配置，
 使用 `ghc-api` provider、`http://localhost:8313/v1` 和 `gpt-5.5`。
