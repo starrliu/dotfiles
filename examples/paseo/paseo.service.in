@@ -1,0 +1,16 @@
+[Unit]
+Description=Paseo agent daemon
+
+[Service]
+Type=simple
+WorkingDirectory=%h
+Environment=@PATH@
+Environment=@SHELL@
+ExecStart=@NODE@ --disable-warning=DEP0040 @PASEO@ daemon run --home @PASEO_HOME@
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0077
+
+[Install]
+WantedBy=default.target

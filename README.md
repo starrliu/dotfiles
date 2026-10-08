@@ -9,6 +9,7 @@
 - **git** - Git 配置
 - **claude** - Claude Code 配置（settings.json、自定义 skills）
 - **agents** - Codex 可发现的共享技能，安装到 `~/.agents/skills/`
+- **Paseo** - Linux agent 服务端安装脚本，通过 Windows 桌面端的 SSH 连接管理 agent
 
 可由 Stow 安装的配置位于 `stow-dotfiles/`：
 
@@ -210,3 +211,18 @@ Codex 安装到 `~/.local/bin`，无需 sudo；脚本通过 `pipx ensurepath` �
 
 安装后先运行 `pipx run ghc-api -p 8313`，再在另一个终端运行 `codex`。
 若保留了旧配置，请自行核对模型、provider 和代理地址。
+
+### Paseo（Windows 连接远程 Linux）
+
+在运行 agent 的 Linux 机器上安装，需要 Node.js 22+、npm 和 systemd 用户服务：
+
+```bash
+./install_paseo.sh
+```
+
+脚本安装 Paseo CLI、初始化本机监听配置并启用后台自启动服务。已有配置会保留，
+已有 daemon 不会被自动重启。Windows Paseo 中通过 **Settings → Add host → Remote SSH**
+添加 `ssh://用户名@SSH别名` 即可连接。
+
+配置和 service 模板位于 `examples/paseo/`，本机配置、凭据与会话保存在 `~/.paseo/`，
+不纳入 Stow。完整的安装、连接、更新和卸载说明见 [Paseo 使用说明](docs/paseo.md)。
